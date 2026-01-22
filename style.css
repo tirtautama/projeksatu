@@ -470,79 +470,44 @@ body:has(.invitation-content) {
 ============================================================ */
 
 .mempelai-section {
-    padding-bottom: 100px; /* Memberi jarak bawah agar tidak tertutup gunungan footer */
-    position: relative;
-    z-index: 10;
+    position: relative; /* Wajib agar gunungan samping nempel di sini */
+    padding: 60px 0;
+    overflow: hidden;   /* Agar gunungan tidak bikin layar goyang kiri-kanan */
 }
 
+.gunungan-samping {
+    position: absolute;
+    width: 60px;        /* Diperkecil sesuai request */
+    opacity: 0.15;      /* Transparan agar elegan */
+    z-index: 1;         /* Di belakang teks */
+    pointer-events: none;
+}
+
+.gunungan-samping.kiri {
+    left: 0;            /* Mentok kiri */
+    top: 15%;           /* Posisi tinggi rendahnya */
+}
+
+.gunungan-samping.kanan {
+    right: 0;           /* Mentok kanan */
+    top: 45%;           /* Posisi berbeda agar tidak terlalu kaku */
+    transform: scaleX(-1); /* Balik arah gambar */
+}
+
+.mempelai-container {
+    position: relative;
+    z-index: 2;         /* Memastikan teks di atas gunungan */
+}
+
+/* Penyesuaian HP */
 @media (max-width: 480px) {
     .mempelai-flex {
         flex-direction: column;
-        gap: 40px; /* Jarak antar mempelai pria & wanita */
+        gap: 30px;
     }
-
-    .mempelai-box {
-        width: 100%;
+    .gunungan-samping {
+        width: 45px;    /* Di HP dibuat makin kecil agar tidak mengganggu */
     }
-
-    .img-wrapper {
-        width: 120px; /* Perkecil sedikit foto di HP agar proporsional */
-        height: 120px;
-    }
-
-    .mempelai-name {
-        font-size: 1.1rem;
-        color: #d4af37; /* Warna emas agar kontras dengan background */
-        margin-top: 10px;
-    }
-
-    .mempelai-parent {
-        font-size: 0.8rem;
-        line-height: 1.4;
-    }
-}
-/* ============================================================
-   STYLING NAMA MEMPELAI (FONT & WARNA KONSISTEN)
-============================================================ */
-
-.mempelai-name {
-    /* Menggunakan font yang sama dengan Hero Title */
-    font-family: 'Cinzel', serif; 
-    
-    /* Ukuran responsif: besar di desktop, menyesuaikan di HP */
-    font-size: clamp(24px, 5vw, 32px); 
-    
-    /* Warna Emas Dominan */
-    color: #d4af37; 
-    
-    /* Ketebalan Font */
-    font-weight: 700;
-    
-    /* Spasi antar huruf agar lebih elegan */
-    letter-spacing: 2px;
-    
-    /* Margin untuk jarak dengan foto dan nama orang tua */
-    margin: 15px 0 5px 0;
-    
-    /* Efek bayangan agar teks tetap terbaca tajam di atas background P2.JPG */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 
-                 0 0 10px rgba(212, 175, 55, 0.3);
-    
-    text-transform: uppercase; /* Opsional: jika ingin huruf besar semua seperti di Hero */
-}
-
-/* Styling tambahan untuk keterangan 'Putra dari/Putri dari' agar fontnya kontras */
-.mempelai-parent {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    font-weight: 400;
-}
-
-.mempelai-parent b {
-    color: #fff; /* Nama orang tua sedikit lebih terang */
-    font-weight: 600;
 }
 
 /* ============================================================
