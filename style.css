@@ -448,20 +448,20 @@ body:has(.invitation-content) {
 .gunungan-bg {
     position: absolute; /* Kunci agar tidak mendorong konten lain */
     bottom: -20px;
-    height: 90%; /* Menjulang tinggi ke atas */
+    height: 70%; /* Menjulang tinggi ke atas */
     z-index: 1;
     /* Warna emas dibuat sangat terang/dominan */
-    filter: brightness(1.7) saturate(1.4) drop-shadow(0 0 25px rgba(212, 175, 55, 0.9));
+    filter: brightness(1.7) saturate(1.4) drop-shadow(0 0 25px rgba(92, 72, 8, 0.9));
     opacity: 1;
     pointer-events: none;
 }
 
 .gunungan-bg.left {
-    left: -149px; /* Muncul setengah */
+    left: -209px; /* Muncul setengah */
 }
 
 .gunungan-bg.right {
-    right: -149px;
+    right: -209px;
     transform: scaleX(-1); /* Balik arah */
 }
 
@@ -469,86 +469,38 @@ body:has(.invitation-content) {
    PENYESUAIAN CONTAINER (AGAR STABIL)
 ============================================================ */
 
-/* Container Utama */
-.mempelai-flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap; /* Izinkan elemen turun ke bawah di HP */
+.mempelai-section {
+    padding-bottom: 100px; /* Memberi jarak bawah agar tidak tertutup gunungan footer */
     position: relative;
+    z-index: 10;
 }
 
-/* Pengaturan Box Mempelai */
-.mempelai-box {
-    flex: 1;
-    min-width: 280px; /* Mencegah konten terlalu ciut */
-    text-align: center;
-    z-index: 2;
-}
-
-/* Frame Foto Lingkaran agar tetap Bulat Sempurna */
-.img-wrapper {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 15px;
-    border-radius: 50%;
-    border: 3px solid #d4af37;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-}
-
-.mempelai-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Menjaga foto tetap proporsional */
-}
-
-/* Divider Gunungan Tengah */
-.middle-divider {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 0 0 auto;
-}
-
-.gunungan-mini-center {
-    width: 80px; /* Ukuran gunungan tengah */
-    height: auto;
-    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
-}
-
-/* ============================================================
-   KHUSUS TAMPILAN HP (Agar Rapi Kembali)
-============================================================ */
 @media (max-width: 480px) {
     .mempelai-flex {
-        flex-direction: column; /* Susun Mempelai Atas-Bawah */
-        gap: 30px;
+        flex-direction: column;
+        gap: 40px; /* Jarak antar mempelai pria & wanita */
     }
 
     .mempelai-box {
         width: 100%;
-        min-width: unset;
-    }
-
-    /* Mengubah Gunungan Tengah menjadi Pembatas Horizontal di HP */
-    .middle-divider {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .gunungan-mini-center {
-        width: 60px; /* Perkecil sedikit di HP */
-        transform: rotate(90deg); /* Opsional: Putar gunungan jika ingin estetika berbeda */
     }
 
     .img-wrapper {
-        width: 130px;
-        height: 130px;
+        width: 120px; /* Perkecil sedikit foto di HP agar proporsional */
+        height: 120px;
+    }
+
+    .mempelai-name {
+        font-size: 1.1rem;
+        color: #d4af37; /* Warna emas agar kontras dengan background */
+        margin-top: 10px;
+    }
+
+    .mempelai-parent {
+        font-size: 0.8rem;
+        line-height: 1.4;
     }
 }
-
 /* ============================================================
    STYLING NAMA MEMPELAI (FONT & WARNA KONSISTEN)
 ============================================================ */
