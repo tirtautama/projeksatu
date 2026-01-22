@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="overlay">
+        <div class="card">
+            <p class="subtitle">THE NOBLE UNION</p>
+
+            <h1 class="title">
+                Bagus<span>&</span>Lutfya
+            </h1>
+
+            <p class="date">Sabtu · 23 Mei 2026</p>
+
+            <div class="divider"></div>
+
+            <p class="invite-text">Dengan hormat mengundang</p>
+            <h2 class="guest">Tamu Undangan</h2>
+
+            <!-- BUTTON -->
+            <button class="btn" id="openInvitation">
+                Buka Undangan
+            </button>
+
+            <p class="note">
+                Mohon maaf apabila terdapat kesalahan penulisan nama dan gelar
+            </p>
+        </div>
+    </div>
+
+
+    <!-- SCRIPT WAJIB DI BAWAH -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById("openInvitation");
+
+            btn.addEventListener("click", function () {
+                document.body.classList.add("fade-out");
+
+                setTimeout(() => {
+                    window.location.href = "halaman.html";
+                }, 1000);
+            });
+        });
+    </script>
+
+</body>
+</html>

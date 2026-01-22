@@ -1,0 +1,1092 @@
+/* ============================================================
+   BAGIAN 1: KODE FLYER (TIDAK BERUBAH - TETAP ASLI)
+============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    overflow: hidden; /* Mencegah scroll di halaman cover */
+    
+    /* BACKGROUND UTAMA - Menggunakan foto Bagus.JPG */
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                url("bagus.JPG") no-repeat;
+    background-size: cover;
+    background-position: center 29%; 
+    background-attachment: fixed;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================================
+   OVERLAY LAYOUT
+================================ */
+.overlay {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ================================
+   CARD (GLASS EFFECT) + GUNUNGAN
+================================ */
+.card {
+    position: relative; /* Wadah untuk gunungan ::before & ::after */
+    width: 100%;
+    max-width: 400px;
+    padding: 50px 30px;
+    text-align: center;
+
+
+    /* Animasi Muncul */
+    animation: fadeInUp 1.5s ease-out;
+    z-index: 10;
+}
+
+/* --- GUNUNGAN KIRI --- */
+.card::before {
+    content: "";
+    position: absolute;
+    left: -80px; /* Posisi di luar kiri kartu */
+    bottom: -10px;
+    width: 150px; 
+    height: 220px;
+    background: url('gunung.png') no-repeat center; /* Pastikan file ada */
+    background-size: contain;
+    z-index: -1; /* Di bawah kartu */
+    opacity: 0.8;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+}
+
+/* --- GUNUNGAN KANAN --- */
+.card::after {
+    content: "";
+    position: absolute;
+    right: -80px; /* Posisi di luar kanan kartu */
+    bottom: -10px;
+    width: 150px;
+    height: 220px;
+    background: url('gunung.png') no-repeat center;
+    background-size: contain;
+    z-index: -1;
+    opacity: 0.8;
+    transform: scaleX(-1); /* Membalik gambar agar simetris */
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================
+   TEXT STYLING
+================================ */
+.subtitle {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    color: #f1f1f1;
+    opacity: 0.8;
+}
+
+.title {
+    font-family: 'Bodoni Moda', serif; 
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    color: #d4af37; /* Gold */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.title span {
+    font-size: 28px;
+    display: block;
+    color: #fff;
+    margin: 5px 0;
+}
+
+.divider {
+    width: 50px;
+    height: 2px;
+    background: #d4af37;
+    margin: 20px auto;
+}
+
+.date {
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.invite-text {
+    font-size: 12px;
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.guest {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 35px;
+    color: #fff;
+}
+
+/* ================================
+   BUTTON
+================================ */
+.btn {
+    background: linear-gradient(135deg, #d4af37, #b8962e);
+    color: #fff;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #e5c05b, #d4af37);
+}
+
+.note {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-top: 30px;
+}
+
+/* ============================================================
+   BAGIAN 2: PERBAIKAN TOTAL HALAMAN UTAMA (INDEX.HTML)
+   KODE DI BAWAH HANYA JALAN DI HALAMAN UNDANGAN
+============================================================ */
+
+/* Reset Body Khusus Halaman Utama (Agar tidak merusak Flyer) */
+body:has(.invitation-content) {
+    display: block; 
+    overflow-y: auto;
+    height: auto;
+}
+
+.invitation-content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center; 
+}
+
+/* --- HERO SECTION REPAIR --- */
+/* Menggunakan !important agar tidak kalah dengan background body flyer */
+body:has(.invitation-content) {
+    display: block; 
+    overflow-y: auto;
+    height: auto;
+    
+    /* P2.JPG sekarang menjadi background statis untuk seluruh halaman index */
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                url("P2.JPG") no-repeat center center !important;
+    background-size: cover !important;
+    background-position: center 25% !important;
+    background-attachment: fixed !important; /* Foto P2 tetap diam saat di-scroll */
+}
+
+.hero-inner {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bismillah {
+    font-family: 'Alice', serif;
+    font-size: 38px !important; 
+    color: #d4af37;
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.hero-top-text {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 4px;
+    font-size: 13px;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(32px, 8vw, 64px); 
+    font-weight: 700;
+    color: #d4af37;
+    margin: 25px 0;
+    line-height: 1.2;
+}
+
+.hero-title span {
+    font-size: 0.8em;
+    color: #d4af37;
+}
+
+.hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.gunungan-mini {
+    width: 45px; 
+    height: auto;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+}
+
+.line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+}
+
+.hero-date {
+    font-family: 'Cinzel', serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    color: #d4af37;
+}
+
+/* --- COUNTDOWN BOX --- */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap; 
+    gap: 12px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 500px;
+}
+
+.countdown-item {
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 15px 5px;
+    border-radius: 12px;
+    flex: 1;
+    backdrop-filter: blur(4px);
+}
+
+.countdown-item span {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    color: #d4af37;
+    font-family: 'Cinzel', serif;
+}
+
+.countdown-item p {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+}
+
+
+.hero-text {
+    color: rgba(255,255,255,0.7);
+    font-size: 20px;
+    line-height: 1.8;
+    margin-top: 20px;
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Playfair Display', serif;
+}
+
+
+
+/* --- SECTION GLOBAL --- */
+/* Agar tidak menimpa hero, gunakan selector yang lebih spesifik */
+.invitation-content .section {
+    padding: 80px 20px;
+    width: 100%;
+    position: relative;
+    background: transparent;
+}
+
+/* Pengecualian agar background Hero tidak tertutup hitam */
+.invitation-content .hero-section.section {
+    background-color: transparent;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    color: #d4af37;
+    margin-bottom: 40px;
+}
+
+/* --- GALLERY GRID --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 200px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================================================
+   PERBAIKAN: TEKS UNDANGAN & SECTION AYAT (TRANSPARAN)
+============================================================ */
+.invitation-content .ayat-section {
+    padding: 100px 20px;
+    width: 100%;
+    display: block;
+}
+
+.invitation-content .ayat-box {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* 3. Perbaikan Teks Arab */
+.invitation-content .ayat-arab {
+    font-family: 'Alice', serif;
+    font-size: clamp(20px, 5vw, 32px);
+    color: #d4af37; /* Warna Emas */
+    line-height: 2.2;
+    margin-top: 75px;
+    margin-bottom: 25px;
+    display: block;
+    direction: rtl; /* Memastikan format Arab dari kanan */
+}
+
+/* 4. Perbaikan Terjemahan & Sumber */
+.invitation-content .ayat-terjemah {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(12px, 3.5vw, 15px);
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.invitation-content .ayat-sumber {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: #d4af37;
+    letter-spacing: 1px;
+    font-weight: bold;
+    display: block;
+}
+
+
+
+/* ============================================================
+   PENGATURAN SEMUA GUNUNGAN (UKURAN MANDIRI)
+============================================================ */
+
+/* 1. Gunungan di Header (Paling Atas) - Dibuat Kecil */
+.gunungan-mini-header {
+    width: 35px !important; /* Ukuran kecil agar tidak merusak layout atas */
+    height: auto;
+    filter: brightness(1.3) drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+    display: block;
+    margin: 0 auto;
+}
+
+/* 2. Gunungan di Tengah (Antara Mempelai) - Ukuran Sedang */
+.gunungan-mini-center {
+    width: 80px !important; /* Ukuran sedang agar terlihat sebagai pembatas */
+    height: auto;
+    filter: brightness(1.5) drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
+    display: block;
+    margin: 0 auto;
+}
+
+/* 3. Gunungan Besar di Samping (Kanan & Kiri) - Dominan & Terang */
+.gunungan-bg {
+    position: absolute; /* Kunci agar tidak mendorong konten lain */
+    bottom: -20px;
+    height: 90%; /* Menjulang tinggi ke atas */
+    z-index: 1;
+    /* Warna emas dibuat sangat terang/dominan */
+    filter: brightness(1.7) saturate(1.4) drop-shadow(0 0 25px rgba(212, 175, 55, 0.9));
+    opacity: 1;
+    pointer-events: none;
+}
+
+.gunungan-bg.left {
+    left: -149px; /* Muncul setengah */
+}
+
+.gunungan-bg.right {
+    right: -149px;
+    transform: scaleX(-1); /* Balik arah */
+}
+
+/* ============================================================
+   PENYESUAIAN CONTAINER (AGAR STABIL)
+============================================================ */
+
+/* Container Utama */
+.mempelai-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Izinkan elemen turun ke bawah di HP */
+    position: relative;
+}
+
+/* Pengaturan Box Mempelai */
+.mempelai-box {
+    flex: 1;
+    min-width: 280px; /* Mencegah konten terlalu ciut */
+    text-align: center;
+    z-index: 2;
+}
+
+/* Frame Foto Lingkaran agar tetap Bulat Sempurna */
+.img-wrapper {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    border: 3px solid #d4af37;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.mempelai-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Menjaga foto tetap proporsional */
+}
+
+/* Divider Gunungan Tengah */
+.middle-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.gunungan-mini-center {
+    width: 80px; /* Ukuran gunungan tengah */
+    height: auto;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+}
+
+/* ============================================================
+   KHUSUS TAMPILAN HP (Agar Rapi Kembali)
+============================================================ */
+@media (max-width: 480px) {
+    .mempelai-flex {
+        flex-direction: column; /* Susun Mempelai Atas-Bawah */
+        gap: 30px;
+    }
+
+    .mempelai-box {
+        width: 100%;
+        min-width: unset;
+    }
+
+    /* Mengubah Gunungan Tengah menjadi Pembatas Horizontal di HP */
+    .middle-divider {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .gunungan-mini-center {
+        width: 60px; /* Perkecil sedikit di HP */
+        transform: rotate(90deg); /* Opsional: Putar gunungan jika ingin estetika berbeda */
+    }
+
+    .img-wrapper {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+/* ============================================================
+   STYLING NAMA MEMPELAI (FONT & WARNA KONSISTEN)
+============================================================ */
+
+.mempelai-name {
+    /* Menggunakan font yang sama dengan Hero Title */
+    font-family: 'Cinzel', serif; 
+    
+    /* Ukuran responsif: besar di desktop, menyesuaikan di HP */
+    font-size: clamp(24px, 5vw, 32px); 
+    
+    /* Warna Emas Dominan */
+    color: #d4af37; 
+    
+    /* Ketebalan Font */
+    font-weight: 700;
+    
+    /* Spasi antar huruf agar lebih elegan */
+    letter-spacing: 2px;
+    
+    /* Margin untuk jarak dengan foto dan nama orang tua */
+    margin: 15px 0 5px 0;
+    
+    /* Efek bayangan agar teks tetap terbaca tajam di atas background P2.JPG */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 
+                 0 0 10px rgba(212, 175, 55, 0.3);
+    
+    text-transform: uppercase; /* Opsional: jika ingin huruf besar semua seperti di Hero */
+}
+
+/* Styling tambahan untuk keterangan 'Putra dari/Putri dari' agar fontnya kontras */
+.mempelai-parent {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.mempelai-parent b {
+    color: #fff; /* Nama orang tua sedikit lebih terang */
+    font-weight: 600;
+}
+
+/* ============================================================
+   STYLING FOTO MEMPELAI (RAPI & ELEGAN)
+============================================================ */
+
+.img-wrapper {
+    position: relative;
+    /* Ukuran bingkai foto */
+    width: 200px; 
+    height: 200px;
+    margin: 0 auto 25px auto; /* Center secara horizontal & jarak ke nama */
+    
+    /* Membuat bentuk lingkaran */
+    border-radius: 50%;
+    
+    /* Memberikan jarak antara foto dan garis border emas */
+    padding: 8px; 
+    
+    /* Border Emas Luar */
+    border: 3px solid #d4af37;
+    
+    /* Efek Cahaya Emas di sekitar foto */
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+    
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mempelai-img {
+    width: 100%;
+    height: 100%;
+    
+    /* KUNCI: Foto otomatis terpotong rapi menjadi bulat */
+    object-fit: cover; 
+    border-radius: 50%;
+    
+    /* Border Putih tipis di dalam untuk pemisah */
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    
+    /* Animasi halus saat hover */
+    transition: transform 0.5s ease;
+}
+
+/* Efek saat mouse mendekat (Opsional) */
+.img-wrapper:hover .mempelai-img {
+    transform: scale(1.05); /* Foto sedikit membesar */
+}
+
+/* Responsif untuk HP */
+@media (max-width: 480px) {
+    .img-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* ============================================================
+   GALLERY SECTION - 6 BOX (3 ATAS, 3 BAWAH)
+============================================================ */
+
+/* Container Utama Galeri */
+.gallery-section {
+    padding: 60px 0;
+    background-color: transparent; /* Sesuaikan dengan tema Anda */
+}
+
+.gallery-grid {
+    display: grid;
+    /* Desktop: Otomatis membagi kolom berdasarkan lebar layar */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 15px; /* Jarak antar foto */
+    padding: 0 15px;
+}
+
+.gallery-item {
+    width: 100%;
+    /* Membuat kotak foto menjadi persegi sempurna (Instagram Style) */
+    aspect-ratio: 1 / 1; 
+    overflow: hidden;
+    border-radius: 12px; /* Sudut tumpul yang elegan */
+    border: 2px solid rgba(212, 175, 55, 0.3); /* Bingkai gold tipis */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* PENTING: Foto memenuhi kotak tanpa menjadi gepeng */
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* Efek Zoom saat foto disentuh */
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* ============================================================
+   PENYESUAIAN KHUSUS HP (Agar Rapih & Tidak Menumpuk)
+============================================================ */
+@media (max-width: 480px) {
+    .gallery-grid {
+        /* Memaksa tampilan 2 KOLOM di HP */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; /* Jarak lebih rapat untuk layar kecil */
+        padding: 0 10px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+    }
+}
+
+/* ============================================================
+   DETAIL ACARA - MEWAH & ELEGANT DESIGN
+============================================================ */
+
+.detail-acara-section {
+    padding: 100px 20px;
+    background: url('P2.JPG') no-repeat center center/cover attachment fixed;
+    position: relative;
+    text-align: center;
+}
+
+/* Overlay gelap agar teks terbaca */
+.detail-acara-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.detail-acara-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.section-title-gold {
+    font-family: 'Cinzel', serif;
+    color: #d4af37;
+    font-size: 36px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* Grid Layout */
+.event-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* Kartu Event Elegan */
+.event-card {
+    background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 40px;
+    border-radius: 20px;
+    width: 350px;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.event-card:hover {
+    transform: translateY(-15px);
+    border-color: #d4af37;
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+}
+
+.event-icon img {
+    width: 80px; 
+    height: auto;
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); 
+    margin-bottom: 20px;
+    display: block;
+    margin: 0 auto;
+}
+
+.event-card h3 {
+    font-family: 'Cinzel', serif;
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.divider-gold {
+    width: 50px;
+    height: 2px;
+    background: #d4af37;
+    margin: 15px auto;
+}
+
+.event-day {
+    color: #d4af37;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.event-date {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.event-time {
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.event-location {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+    min-height: 80px;
+}
+
+/* TOMBOL GOOGLE MAPS MEWAH */
+.btn-maps {
+    display: inline-block;
+    padding: 12px 25px;
+    background: transparent;
+    border: 2px solid #d4af37;
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-maps:hover {
+    background: #d4af37;
+    color: #000;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+/* Responsif HP */
+@media (max-width: 768px) {
+    .event-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .event-card {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+/* ============================================================
+   GIFT SECTION - MEWAH & ELEGAN
+============================================================ */
+.gift-section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.gift-intro {
+    font-family: 'Cinzel', serif;
+    color: #fff;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Grid Rekening */
+.bank-grid {
+    font-family: 'Cinzel', serif;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Grid Alamat */
+.address-grid {
+    font-family: 'Great Vibes', cursive;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Base Card Style */
+.gift-card {
+    background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 15px;
+    width: 320px;
+    transition: all 0.3s ease;
+}
+
+.gift-card.full-width {
+    width: 660px; /* Gabungan 2 card + gap */
+}
+
+.gift-card:hover {
+    border-color: #d4af37;
+    transform: translateY(-5px);
+}
+
+.bank-logo {
+    height: 30px;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1); /* Membuat logo jadi putih agar elegan */
+}
+
+.account-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #d4af37;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.account-name {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.address-text {
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Button Salin */
+.btn-copy {
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-copy:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+/* ============================================================
+   FOOTER THANKS - MEWAH & PREMIUM
+============================================================ */
+.footer-thanks {
+    padding: 100px 20px 50px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+    position: relative;
+    text-align: center;
+}
+
+.thanks-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 30px 30px 100px 100px; /* Bentuk unik melengkung di bawah */
+    padding: 60px 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+/* ============================================================
+   FOOTER THANKS - MEWAH & PREMIUM
+============================================================ */
+.footer-thanks {
+    padding: 100px 20px 50px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+    position: relative;
+    text-align: center;
+}
+
+.thanks-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 30px 30px 100px 100px; /* Bentuk unik melengkung di bawah */
+    padding: 60px 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+/* Foto Mempelai Berdua */
+.thanks-photo-wrapper {
+    width: 180px;
+    height: 180px;
+    margin: -130px auto 30px; /* Foto naik ke atas memotong border */
+    position: relative;
+    z-index: 5;
+}
+
+.thanks-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #d4af37;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+}
+
+/* Judul & Teks */
+.thanks-title {
+    font-family: 'Cinzel', serif;
+    color: #d4af37;
+    font-size: 28px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.divider-gold-small {
+    width: 40px;
+    height: 2px;
+    background: #d4af37;
+    margin: 15px auto;
+}
+
+.closing-text {
+    font-family: 'Montserrat', sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.footer-warm {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.footer-nama {
+    font-family: 'Cinzel', serif;
+    color: #d4af37;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.footer-nama span {
+    font-family: 'Alice', serif;
+    font-style: italic;
+}
+
+/* Penutup Gunungan */
+.gunungan-footer {
+    width: 60px;
+    margin-top: 30px;
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+}
+
+.copyright {
+    margin-top: 50px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Responsive Mobile */
+@media (max-width: 576px) {
+    .thanks-card {
+        padding: 60px 20px 40px;
+        margin-top: 80px;
+    }
+    .thanks-photo-wrapper {
+        width: 150px;
+        height: 150px;
+        margin-top: -110px;
+    }
+}
+
+
+/* --- RESPONSIVE MOBILE FIX --- */
+@media (max-width: 480px) {
+    .hero-title { font-size: 38px; }
+    .bismillah { font-size: 28px !important; }
+    .countdown-container { gap: 6px; }
+    .countdown-item span { font-size: 20px; }
+    .line { width: 40px; }
+    .hero-text { font-size: 14px; padding: 0 10px; }
+}
